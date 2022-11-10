@@ -1,10 +1,12 @@
 import "./App.css"
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom"
 //Importamos los componentes creados
-import Adopta from "./components/adopta"
-import Contact from "./components/contact"
-import Home from "./components/home"
-import NavBarExample from "./layouts/navbar"
+import Adopta from "./components/Adopta"
+import Contact from "./components/Contact"
+import Home from "./components/Home"
+import NavBarExample from "./layouts/Navbar"
+import Footer from "./components/Footer"
+
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <Footer/>
     </div>
   )
 }
