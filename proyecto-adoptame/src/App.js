@@ -4,25 +4,30 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom"
 import Adopta from "./components/Adopta"
 import Contact from "./components/Contact"
 import Home from "./components/Home"
-import NavBarExample from "./layouts/Navbar"
+import NavBar from "./layouts/Navbar"
 import Footer from "./components/Footer"
-
+import Login from "./components/Login"
+import Signup from "./components/Signup"
 
 function App() {
+  const user = localStorage.getItem("token")
+
   return (
     <div className="App">
       <BrowserRouter>
+        <NavBar />
         <Routes>
-          <Route path="/" element={<NavBarExample />}>
-            <Route index element={<Home />} />
-            <Route path="adopta" element={<Adopta />} />
-            <Route path="contact" element={<Contact />} />
+        {user && <Route path="/" exact element={<Home />} />}
+        {user &&  <Route path="adopta" element={<Adopta />} />}
+        {user &&  <Route path="contact" element={<Contact />} />}
+          <Route path="/signup" exact element={<Signup />} />
+          <Route path="/login" exact element={<Login />} />
+          <Route path="/" element={<Navigate replace to="/login" />} />
 
-            <Route path="*" element={<Navigate replace to="/" />} />
-          </Route>
+          <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </BrowserRouter>
-      <Footer/>
+      <Footer />
     </div>
   )
 }

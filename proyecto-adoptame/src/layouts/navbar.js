@@ -3,8 +3,13 @@ import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import { Outlet, Link } from "react-router-dom"
 import { MdPets, MdHome, MdContactPage } from "react-icons/md"
+import "../style.css"
 
 const NavBar = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("token")
+    window.location.reload()
+  }
   return (
     <>
       <Navbar className="navBg" variant="dark" expand="lg">
@@ -20,7 +25,7 @@ const NavBar = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="me-auto navbarflex">
               <Nav.Link as={Link} to="/">
                 <MdHome style={{ marginBottom: "3px" }} />
                 Home
@@ -33,7 +38,8 @@ const NavBar = () => {
                 <MdContactPage style={{ marginBottom: "3px" }} />
                 Contact
               </Nav.Link>
-              <Link></Link>
+
+              <button className="white_btn" onClick={handleLogout}>Logout</button>
             </Nav>
           </Navbar.Collapse>
         </Container>

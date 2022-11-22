@@ -1,14 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "../components/Contact/styles.module.css";
+import styles from "./styles.module.css";
 
-const Contact = () => {
+const Signup = () => {
 	const [data, setData] = useState({
 		firstName: "",
 		lastName: "",
 		email: "",
-		message: "",
+		password: "",
 	});
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
@@ -20,9 +20,9 @@ const Contact = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8080/api/contact";
+			const url = "http://localhost:8080/api/users";
 			const { data: res } = await axios.post(url, data);
-			navigate("/contact");
+			navigate("/login");
 			console.log(res.message);
 		} catch (error) {
 			if (
@@ -38,10 +38,17 @@ const Contact = () => {
 	return (
 		<div className={styles.signup_container}>
 			<div className={styles.signup_form_container}>
-
+				<div className={styles.left}>
+					<h1 className={styles.welcome}>Bienvenido de Nuevo</h1>
+					<Link to="/login">
+						<button type="button" className={styles.white_btn}>
+							Ingresar
+						</button>
+					</Link>
+				</div>
 				<div className={styles.right}>
 					<form className={styles.form_container} onSubmit={handleSubmit}>
-						<h1>Contacto</h1>
+						<h1>Crear Cuenta</h1>
 						<input
 							type="text"
 							placeholder="Nombres"
@@ -69,14 +76,14 @@ const Contact = () => {
 							required
 							className={styles.input}
 						/>
-						<textarea 
-							type="text"
-							placeholder="Mensaje"
-							name="mensaje"
+						<input
+							type="password"
+							placeholder="Contraseña"
+							name="password"
 							onChange={handleChange}
-							value={data.mensaje}
+							value={data.password}
 							required
-							className={styles.textarea}
+							className={styles.input}
 						/>
 						{error && <div className={styles.error_msg}>{error}</div>}
 						<button type="submit" className={styles.green_btn}>
@@ -89,4 +96,4 @@ const Contact = () => {
 	);
 };
 
-export default Contact;
+export default Signup;

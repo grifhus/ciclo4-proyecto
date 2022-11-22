@@ -4,6 +4,10 @@ import Footer from "../components/Footer"
 
 
 const Home = () => {
+  const handleLogout = () => {
+		localStorage.removeItem("token");
+		window.location.reload();
+	};
   return (
     <div>
       {/*
@@ -87,6 +91,7 @@ const Home = () => {
           </svg>
         </Col>
       </Row> */}
+      <button className="white_btn" onClick={handleLogout}></button>
       <Carousel>
       <Carousel.Item>
         <img

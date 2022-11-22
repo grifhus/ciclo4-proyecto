@@ -90,7 +90,8 @@ const Adopta = () => {
               <h3>{product.nombre}</h3>
               <p>{product.observacion}</p>
             </div> */}
-          <Card style={{ width: "18rem" }}>
+          <Card className="box-shadow" style={{ width: "18rem" }}>
+
             <Card.Img
               variant="top"
               src={product.img}
