@@ -25,16 +25,16 @@ const NavBar = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto navbarflex">
-              <Nav.Link as={Link} to="/">
-                <MdHome style={{ marginBottom: "3px" }} />
+            <Nav className="me-auto navbarflex p-3 ms-5  h3">
+              <Nav.Link className="px-4 " as={Link} to="/">
+                <MdHome style={{ marginBottom: "3 px " }} />
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="/adopta">
+              <Nav.Link className="px-4 " as={Link} to="/adopta">
                 <MdPets style={{ marginBottom: "3px" }} />
                 Adopta
               </Nav.Link>
-              <Nav.Link as={Link} to="/contact">
+              <Nav.Link className="px-4 " as={Link} to="/contact">
                 <MdContactPage style={{ marginBottom: "3px" }} />
                 Contact
               </Nav.Link>

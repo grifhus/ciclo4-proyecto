@@ -103,7 +103,7 @@ const Adopta = () => {
               <Card.Text className=" text-black">
                 {product.observacion}
               </Card.Text>
-              <Button variant="danger">Adoptame</Button>
+              <Button variant="primary">Adoptame</Button>
             </Card.Body>
           </Card>
         </div>

@@ -60,6 +60,7 @@
   
 }
 .box-shadow {
+  font-family: roboto;
   box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
     0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
 }
@@ -81,4 +82,21 @@
 .navbarflex{
   display: flex;
   justify-content: flex-end;
+}
+
+
+
+.carru{
+  max-height: 600px;
+  object-fit: cover;
+}
+
+.info{
+  margin-bottom: 20rem;
+
+}
+.parrafo{
+  font-size: 1.6rem;
+  margin-top: 3rem;
+  padding: 1rem;
 }
