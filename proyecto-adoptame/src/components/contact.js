@@ -1,92 +1,73 @@
-import { useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import styles from "../components/Contact/styles.module.css";
+import { useState, useEffect } from "react"
+import axios from "axios"
+import { Link, useNavigate } from "react-router-dom"
+import styles from "../components/Contact/styles.module.css"
+import emailjs from "@emailjs/browser"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Contact = () => {
-	const [data, setData] = useState({
-		firstName: "",
-		lastName: "",
-		email: "",
-		message: "",
-	});
-	const [error, setError] = useState("");
-	const navigate = useNavigate();
+  useEffect(() => {
+    AOS.init({
+      duration:2000
+    });
+  }, [])
+  const sendEmail = (event) => {
+    event.preventDefault()
+    emailjs
+      .sendForm(
+        "service_z75itdi",
+        "template_wox02e9",
+        event.target,
+        "64JKz4_2uz1n9b6w6"
+      )
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error))
+  }
 
-	const handleChange = ({ currentTarget: input }) => {
-		setData({ ...data, [input.name]: input.value });
-	};
+  return (
+    <div className={styles.signup_container}>
+      <div className={styles.signup_form_container}>
+        <div className={styles.right}>
+          <form className={styles.form_container} onSubmit={sendEmail} data-aos="zoom-in">
+            <h1>Contacto</h1>
+            <input
+              type="text"
+              placeholder="Nombres"
+              name="user_name"
+              required
+              className={styles.input}
+            />
+            <input
+              type="text"
+              placeholder="Apellidos"
+              name="user_lastname"
+              required
+              className={styles.input}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              name="user_email"
+              required
+              className={styles.input}
+            />
+            <textarea
+              type="text"
+              placeholder="Mensaje"
+              name="user_message"
+              required
+              className={styles.textarea}
+            />
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			const url = "http://localhost:8080/api/contact";
-			const { data: res } = await axios.post(url, data);
-			navigate("/contact");
-			console.log(res.message);
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				setError(error.response.data.message);
-			}
-		}
-	};
+            <button type="submit" className={styles.green_btn}>
+              Enviar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  )
+}
 
-	return (
-		<div className={styles.signup_container}>
-			<div className={styles.signup_form_container}>
-
-				<div className={styles.right}>
-					<form className={styles.form_container} onSubmit={handleSubmit}>
-						<h1>Contacto</h1>
-						<input
-							type="text"
-							placeholder="Nombres"
-							name="firstName"
-							onChange={handleChange}
-							value={data.firstName}
-							required
-							className={styles.input}
-						/>
-						<input
-							type="text"
-							placeholder="Apellidos"
-							name="lastName"
-							onChange={handleChange}
-							value={data.lastName}
-							required
-							className={styles.input}
-						/>
-						<input
-							type="email"
-							placeholder="Email"
-							name="email"
-							onChange={handleChange}
-							value={data.email}
-							required
-							className={styles.input}
-						/>
-						<textarea 
-							type="text"
-							placeholder="Mensaje"
-							name="mensaje"
-							onChange={handleChange}
-							value={data.mensaje}
-							required
-							className={styles.textarea}
-						/>
-						{error && <div className={styles.error_msg}>{error}</div>}
-						<button type="submit" className={styles.green_btn}>
-							Registrar
-						</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	);
-};
-
-export default Contact;
+export default Contact

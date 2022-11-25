@@ -1,8 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 import { Container } from "react-bootstrap"
 import initialCard from "../Assets/cards"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 // const initialCard = [
@@ -71,6 +73,11 @@ import initialCard from "../Assets/cards"
 // ]
 
 const Adopta = () => {
+  useEffect(() => {
+    AOS.init({
+      duration:2000
+    });
+  }, [])
   const [card, setCard] = useState(initialCard)
   return (
     <Container className="cards">
@@ -90,7 +97,7 @@ const Adopta = () => {
               <h3>{product.nombre}</h3>
               <p>{product.observacion}</p>
             </div> */}
-          <Card className="box-shadow" style={{ width: "18rem" }}>
+          <Card className="box-shadow" style={{ width: "18rem" }} data-aos="flip-down">
 
             <Card.Img
               variant="top"
